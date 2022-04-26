@@ -7,20 +7,57 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 
 const pageStyles = css`
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100vw;
+  h1 {
+    position: absolute;
+    top: 6vh;
+    left: 6vw;
+    font-style: italic;
+    font-size: 58px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    color: #f9f9f9;
+    @media screen and (max-width: 900px) {
+      font-size: 2rem;
+      top: 6vh;
+      left: 6vw;
+    }
+    @media screen and (max-width: 550px) {
+      font-size: 1.5rem;
+      top: 0.2vh;
+      left: 2vw;
+    }
+  }
+  h2 {
+    font-style: italic;
+    font-size: 38px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    margin: 12vh 0 8vh;
+    @media screen and (max-width: 550px) {
+      font-size: 1.7rem;
+      margin: 6vh 0 4vh;
+    }
+  }
+  .top {
+    width: 100%;
+    background-color: #fff0e1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
   .info {
     width: 85vw;
     max-width: 800px;
-    h1 {
-      font-style: italic;
-      font-size: 38px;
-      font-weight: 900;
-      letter-spacing: 1px;
-      margin: 2rem 0;
+    @media screen and (max-width: 550px) {
+      width: 93vw;
     }
   }
+
   .filters {
     button {
       border: 1px solid #bdbcbf;
@@ -39,7 +76,7 @@ const pageStyles = css`
     display: flex;
     flex-wrap: wrap;
     margin-top: 15px;
-    margin-bottom: 50px;
+    margin-bottom: 8vh;
     button {
       text-align: center;
       outline: 1px solid #bdbcbf;
@@ -124,6 +161,8 @@ const pageStyles = css`
         border: none;
         transition: none;
         padding: 5px;
+        font-weight: bold;
+        text-align: right;
         :hover {
           outline: 1px solid #36343e;
         }
