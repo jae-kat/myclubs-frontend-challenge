@@ -1,3 +1,4 @@
+import Boxing from '/public/myclubs_boxen.webp';
 import Logo from '/public/myClubs_Logo.webp';
 import { css } from '@emotion/react';
 import Head from 'next/head';
