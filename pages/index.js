@@ -175,8 +175,8 @@ export default function Home() {
   const [allWorkouts, setAllWorkouts] = useState([]);
 
   // filter the workouts by country or participationMode
-  const [countryFilter, setCountryFilter] = useState();
-  const [modeFilter, setModeFilter] = useState();
+  const [countryFilter, setCountryFilter] = useState('');
+  const [modeFilter, setModeFilter] = useState('');
 
   // this is for the styling
   const [selectedCountry, setSelectedCountry] = useState('');
@@ -232,145 +232,159 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div css={pageStyles}>
-        {/* <Image src={Logo} /> */}
-        <div className="info">
-          <h1>FIND YOUR WORKOUT</h1>
-          <div className="filters">
-            <button
-              onClick={() => {
-                setCountryFilter('');
-                setModeFilter('');
-                setSelectedCountry('');
-                setSelectedMode('');
-              }}
-            >
-              Clear filters
-            </button>
-            <button
-              className={selectedCountry === 'CH' ? 'active' : 'inactive'}
-              onClick={() => {
-                setSelectedCountry(selectedCountry === 'CH' ? 'AT' : 'CH');
-                setCountryFilter(
-                  countryFilter === 'CH'
-                    ? allWorkouts
-                    : allWorkouts.filter(
-                        (workout) => workout._source.country === 'CH',
-                      ),
-                );
-              }}
-            >
-              CH
-            </button>
-            <button
-              className={selectedCountry === 'AT' ? 'active' : 'inactive'}
-              onClick={() => {
-                setSelectedCountry(selectedCountry === 'AT' ? 'CH' : 'AT');
-                setCountryFilter(
-                  countryFilter === 'AT'
-                    ? allWorkouts
-                    : allWorkouts.filter(
-                        (workout) => workout._source.country === 'AT',
-                      ),
-                );
-              }}
-            >
-              AT
-            </button>
-            <button
-              className={selectedMode === 'indoor' ? 'active' : 'inactive'}
-              onClick={() => {
-                setSelectedMode(selectedMode === 'indoor' ? '' : 'indoor');
-                setModeFilter(
-                  modeFilter.includes('indoor')
-                    ? allWorkouts
-                    : allWorkouts.filter((workout) =>
-                        workout._source.participationModes.includes('indoor'),
-                      ),
-                );
-              }}
-            >
-              Indoor
-            </button>
-            <button
-              className={selectedMode === 'outdoor' ? 'active' : 'inactive'}
-              onClick={() => {
-                setSelectedMode(selectedMode === 'outdoor' ? '' : 'outdoor');
-                setModeFilter(
-                  modeFilter.includes('outdoor')
-                    ? allWorkouts
-                    : allWorkouts.filter((workout) =>
-                        workout._source.participationModes.includes('outdoor'),
-                      ),
-                );
-              }}
-            >
-              Outdoor
-            </button>
-            <button
-              className={selectedMode === 'online' ? 'active' : 'inactive'}
-              onClick={() => {
-                setSelectedMode(selectedMode === 'online' ? '' : 'online');
-                setModeFilter(
-                  modeFilter.includes('videostream')
-                    ? allWorkouts
-                    : allWorkouts.filter((workout) =>
-                        workout._source.participationModes.includes(
-                          'videostream',
+        <Image src={Boxing} />
+        <h1>
+          ONE <br />
+          MEMBERSHIP
+          <br /> UNLIMITED
+          <br /> SPORTS
+        </h1>
+
+        <div className="top">
+          <div className="info">
+            <h2>FIND YOUR WORKOUT</h2>
+            <div className="filters">
+              <button
+                onClick={() => {
+                  setCountryFilter('');
+                  setModeFilter('');
+                  setSelectedCountry('');
+                  setSelectedMode('');
+                }}
+              >
+                Clear filters
+              </button>
+              <button
+                className={selectedCountry === 'CH' ? 'active' : 'inactive'}
+                onClick={() => {
+                  setSelectedCountry(selectedCountry === 'CH' ? 'AT' : 'CH');
+                  setCountryFilter(
+                    countryFilter === 'CH'
+                      ? allWorkouts
+                      : allWorkouts.filter(
+                          (workout) => workout._source.country === 'CH',
                         ),
-                      ),
-                );
-              }}
-            >
-              Online
-            </button>
+                  );
+                }}
+              >
+                CH
+              </button>
+              <button
+                className={selectedCountry === 'AT' ? 'active' : 'inactive'}
+                onClick={() => {
+                  setSelectedCountry(selectedCountry === 'AT' ? 'CH' : 'AT');
+                  setCountryFilter(
+                    countryFilter === 'AT'
+                      ? allWorkouts
+                      : allWorkouts.filter(
+                          (workout) => workout._source.country === 'AT',
+                        ),
+                  );
+                }}
+              >
+                AT
+              </button>
+              <button
+                className={selectedMode === 'indoor' ? 'active' : 'inactive'}
+                onClick={() => {
+                  setSelectedMode(selectedMode === 'indoor' ? '' : 'indoor');
+                  setModeFilter(
+                    modeFilter.includes('indoor')
+                      ? allWorkouts
+                      : allWorkouts.filter((workout) =>
+                          workout._source.participationModes.includes('indoor'),
+                        ),
+                  );
+                }}
+              >
+                Indoor
+              </button>
+              <button
+                className={selectedMode === 'outdoor' ? 'active' : 'inactive'}
+                onClick={() => {
+                  setSelectedMode(selectedMode === 'outdoor' ? '' : 'outdoor');
+                  setModeFilter(
+                    modeFilter.includes('outdoor')
+                      ? allWorkouts
+                      : allWorkouts.filter((workout) =>
+                          workout._source.participationModes.includes(
+                            'outdoor',
+                          ),
+                        ),
+                  );
+                }}
+              >
+                Outdoor
+              </button>
+              <button
+                className={selectedMode === 'online' ? 'active' : 'inactive'}
+                onClick={() => {
+                  setSelectedMode(selectedMode === 'online' ? '' : 'online');
+                  setModeFilter(
+                    modeFilter.includes('videostream')
+                      ? allWorkouts
+                      : allWorkouts.filter((workout) =>
+                          workout._source.participationModes.includes(
+                            'videostream',
+                          ),
+                        ),
+                  );
+                }}
+              >
+                Online
+              </button>
+            </div>
+
+            <div className="days">
+              <button
+                className={selectedTime === 13 ? 'active' : 'inactive'}
+                onClick={() => {
+                  setSelectedTime(13);
+                }}
+              >
+                <p className="name">Thu</p>
+                <p className="number">13</p>
+              </button>
+              <button
+                className={selectedTime === 14 ? 'active' : 'inactive'}
+                onClick={() => {
+                  setSelectedTime(14);
+                }}
+              >
+                <p className="name">Fri</p>
+                <p className="number">14</p>
+              </button>
+              <button
+                className={selectedTime === 15 ? 'active' : 'inactive'}
+                onClick={() => {
+                  setSelectedTime(15);
+                }}
+              >
+                <p className="name">Sat</p>
+                <p className="number">15</p>
+              </button>
+              <button
+                className={selectedTime === 16 ? 'active' : 'inactive'}
+                onClick={() => {
+                  setSelectedTime(16);
+                }}
+              >
+                <p className="name">Sun</p>
+                <p className="number">16</p>
+              </button>
+              <button
+                className={selectedTime === 17 ? 'active' : 'inactive'}
+                onClick={() => {
+                  setSelectedTime(17);
+                }}
+              >
+                <p className="name">Mon</p>
+                <p className="number">17</p>
+              </button>
+            </div>
           </div>
-          <div className="days">
-            <button
-              className={selectedTime === 13 ? 'active' : 'inactive'}
-              onClick={() => {
-                setSelectedTime(13);
-              }}
-            >
-              <p className="name">Thu</p>
-              <p className="number">13</p>
-            </button>
-            <button
-              className={selectedTime === 14 ? 'active' : 'inactive'}
-              onClick={() => {
-                setSelectedTime(14);
-              }}
-            >
-              <p className="name">Fri</p>
-              <p className="number">14</p>
-            </button>
-            <button
-              className={selectedTime === 15 ? 'active' : 'inactive'}
-              onClick={() => {
-                setSelectedTime(15);
-              }}
-            >
-              <p className="name">Sat</p>
-              <p className="number">15</p>
-            </button>
-            <button
-              className={selectedTime === 16 ? 'active' : 'inactive'}
-              onClick={() => {
-                setSelectedTime(16);
-              }}
-            >
-              <p className="name">Sun</p>
-              <p className="number">16</p>
-            </button>
-            <button
-              className={selectedTime === 17 ? 'active' : 'inactive'}
-              onClick={() => {
-                setSelectedTime(17);
-              }}
-            >
-              <p className="name">Mon</p>
-              <p className="number">17</p>
-            </button>
-          </div>
+        </div>
+        <div className="info">
           {filteredWorkouts &&
             filteredWorkouts.map((workout) => {
               return (
