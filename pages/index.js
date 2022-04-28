@@ -1,10 +1,9 @@
-import Boxing from '/public/myclubs_boxen.webp';
-import Logo from '/public/myClubs_Logo.webp';
 import { css } from '@emotion/react';
 import Head from 'next/head';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
+import Boxing from '../public/myclubs_boxen.webp';
 
 const pageStyles = css`
   position: relative;
@@ -38,6 +37,7 @@ const pageStyles = css`
     font-weight: 900;
     letter-spacing: 1px;
     margin: 12vh 0 8vh;
+    text-align: center;
     @media screen and (max-width: 550px) {
       font-size: 1.7rem;
       margin: 6vh 0 4vh;
@@ -59,6 +59,7 @@ const pageStyles = css`
   }
 
   .filters {
+    text-align: center;
     button {
       border: 1px solid #bdbcbf;
       border-radius: 50px;
@@ -75,8 +76,10 @@ const pageStyles = css`
   .days {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     margin-top: 15px;
     margin-bottom: 8vh;
+    text-align: center;
     button {
       text-align: center;
       outline: 1px solid #bdbcbf;
@@ -111,15 +114,23 @@ const pageStyles = css`
     border-radius: 3px;
     padding: 30px;
     min-height: 300px;
-    h2 {
+    .partner {
+      font-style: italic;
+    }
+    h3 {
       margin: 0;
     }
     span {
+      display: inline-block;
       border: 1px solid #bdbcbf;
       border-radius: 50px;
       background-color: transparent;
       padding: 0 0.4rem 0.2rem;
       margin-right: 0.5rem;
+      margin-top: 0.5rem;
+    }
+    .address {
+      font-size: smaller;
     }
     button {
       transition: 300ms ease-in-out;
