@@ -254,6 +254,7 @@ export default function Home() {
         <div className="top">
           <div className="info">
             <h2>FIND YOUR WORKOUT</h2>
+            {/* country and participation mode filters */}
             <div className="filters">
               <button
                 onClick={() => {
@@ -346,6 +347,7 @@ export default function Home() {
               </button>
             </div>
 
+            {/* filter by date */}
             <div className="days">
               <button
                 className={selectedTime === 13 ? 'active' : 'inactive'}
@@ -395,6 +397,8 @@ export default function Home() {
             </div>
           </div>
         </div>
+
+        {/* display the workouts */}
         <div className="info">
           {filteredWorkouts &&
             filteredWorkouts.map((workout) => {
@@ -480,9 +484,3 @@ export default function Home() {
     </>
   );
 }
-
-// cream: #fff0e1
-// #f9f9f9
-// red: #fe2c2a
-// dark: #22202b
-// #36343e
