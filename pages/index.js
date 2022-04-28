@@ -400,85 +400,97 @@ export default function Home() {
 
         {/* display the workouts */}
         <div className="info">
-          {filteredWorkouts &&
-            filteredWorkouts.map((workout) => {
-              return (
-                <div key={`workout-${workout._source.id}`} className="activity">
-                  <div
-                    className={
-                      moreInfoVisible.includes(workout._source.id)
-                        ? 'invisible'
-                        : 'visible'
-                    }
-                  >
-                    <p>{workout._source.partner.name}</p>
-                    <h2>{workout._source.name}</h2>
+          {filteredWorkouts.map((workout) => {
+            return (
+              <div key={`workout-${workout._source.id}`} className="activity">
+                <div
+                  className={
+                    moreInfoVisible.includes(workout._source.id)
+                      ? 'invisible'
+                      : 'visible'
+                  }
+                >
+                  <p className="partner">{workout._source.partner.name}</p>
+                  <h3>{workout._source.name}</h3>
 
-                    <p>
-                      {`${new Date(
-                        workout._source.activityDate.start.iso,
-                      ).toLocaleDateString('en-DE', {
-                        year: 'numeric',
-                        month: 'long',
-                        day: 'numeric',
-                      })}, ${new Date(
-                        workout._source.activityDate.start.iso,
-                      ).toLocaleTimeString('de-DE', {
-                        hour: '2-digit',
-                        minute: '2-digit',
-                      })}-${new Date(
-                        workout._source.activityDate.end.iso,
-                      ).toLocaleTimeString('de-DE', {
-                        hour: '2-digit',
-                        minute: '2-digit',
-                      })}`}
-                    </p>
-                    <p>
-                      {workout._source.categories.map((category) => {
-                        return (
-                          <span
-                            key={`workout-${workout._source.id}-category-${category}`}
-                          >
-                            {category.slice(3)}{' '}
-                          </span>
-                        );
-                      })}
-                    </p>
-                    <p>
-                      {`${workout._source.city}, ${workout._source.country}`}
-                      <br />
-                      {`${workout._source.zipCode}, ${workout._source.street}`}
-                    </p>
-                    <button onClick={() => router.push('/bookingConfirmation')}>
-                      <h3>BOOK NOW</h3>
-                    </button>
-                    <button
-                      className="more"
-                      onClick={() =>
-                        setMoreInfoVisible(`${workout._source.id}-visible`)
-                      }
-                    >
-                      <h3>MORE INFO</h3>
-                    </button>
-                  </div>
-                  <div
-                    className={
-                      moreInfoVisible.includes(workout._source.id)
-                        ? 'visible moreInfo'
-                        : 'invisible'
+                  <p>
+                    {`${new Date(
+                      workout._source.activityDate.start.iso,
+                    ).toLocaleDateString('en-DE', {
+                      year: 'numeric',
+                      month: 'long',
+                      day: 'numeric',
+                    })}, ${new Date(
+                      workout._source.activityDate.start.iso,
+                    ).toLocaleTimeString('de-DE', {
+                      hour: '2-digit',
+                      minute: '2-digit',
+                    })}-${new Date(
+                      workout._source.activityDate.end.iso,
+                    ).toLocaleTimeString('de-DE', {
+                      hour: '2-digit',
+                      minute: '2-digit',
+                    })}`}
+                  </p>
+                  <p>
+                    {workout._source.categories.map((category) => {
+                      return (
+                        <span
+                          key={`workout-${workout._source.id}-category-${category}`}
+                        >
+                          {category.slice(3)}{' '}
+                        </span>
+                      );
+                    })}
+                  </p>
+                  <p className="address">
+                    {`${workout._source.city}, ${workout._source.country}`}
+                    <br />
+                    {`${workout._source.zipCode}, ${workout._source.street}`}
+                  </p>
+                  <button
+                    onClick={() =>
+                      router.push({
+                        pathname: '/bookingConfirmation',
+                        query: {
+                          name: workout._source.name,
+                          time: workout._source.activityDate.start.iso,
+                          partner: workout._source.partner.name,
+                        },
+                      })
                     }
                   >
-                    <button
-                      onClick={() => setMoreInfoVisible('invisible')}
-                      aria-label="close info"
-                    >
-                      X
-                    </button>
-                    <p>{workout._source.description}</p>
-                  </div>
+                    <h4>BOOK NOW</h4>
+                  </button>
+                  <button
+                    className="more"
+                    onClick={() =>
+                      setMoreInfoVisible(`${workout._source.id}-visible`)
+                    }
+                  >
+                    <h4>MORE INFO</h4>
+                  </button>
                 </div>
-              );
-            })}
+
+                {/* this shows up when user clicks on 'more info' */}
+                <div
+                  className={
+                    moreInfoVisible.includes(workout._source.id)
+                      ? 'visible moreInfo'
+                      : 'invisible'
+                  }
+                >
+                  <button
+                    onClick={() => setMoreInfoVisible('invisible')}
+                    aria-label="close info"
+                  >
+                    X
+                  </button>
+                  <p>{workout._source.description}</p>
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
     </>
